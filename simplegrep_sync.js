@@ -20,11 +20,12 @@ var rawContents = fs.readFileSync(filename, 'utf-8')
 var lines       = rawContents.split('\n')
 
 var i
-var output = ""
+var output = []
 for (i = 0; i < lines.length; i++) {
   if (re.test(lines[i])) {
-    output +=  lines[i] + '\n'
- }
+    output.push(lines[i])
+  }
 }
-fs.writeFileSync(outfile, output)
+output.sort()
+fs.writeFileSync(outfile, output.join('\n'))
 console.log('All done!')
