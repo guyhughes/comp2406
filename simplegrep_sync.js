@@ -12,15 +12,19 @@ if (process.argv.length < 4) {
   process.exit(1)
 }
 
-var re = new RegExp(process.argv[2])
+var re       = new RegExp(process.argv[2])
 var filename = process.argv[3]
+var outfile  = process.argv[4]
 
 var rawContents = fs.readFileSync(filename, 'utf-8')
-var lines = rawContents.split('\n')
+var lines       = rawContents.split('\n')
 
 var i
+var output = ""
 for (i = 0; i < lines.length; i++) {
   if (re.test(lines[i])) {
-    console.log(lines[i])
-  }
+    output +=  lines[i] + '\n'
+ }
 }
+fs.writeFileSync(outfile, output)
+console.log('All done!')
