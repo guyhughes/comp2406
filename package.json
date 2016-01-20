@@ -1,0 +1,16 @@
+{
+  "name": "tutorial2",
+  "version": "0.0.1",
+  "description": "",
+  "main": "tinywebserver.js",
+  "scripts": {
+    "start": "node tinywebserver.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "bb:guyhughes/comp2406"
+  },
+  "author": "Guy Hughes",
+  "license": "ISC"
+}

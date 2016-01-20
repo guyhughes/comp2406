@@ -59,9 +59,9 @@ var MIME_TYPES = {
 
 var options = {
     host: 'localhost',
-    port: 8080,
+    port: 3000,
     index: 'index.html',
-    docroot: '.'
+    docroot: './public_html'
 };
 
 var get_mime = function(filename) {
