@@ -57,12 +57,8 @@ var MIME_TYPES = {
     'txt': 'text/text'
 };
 
-var options = {
-    host: 'localhost',
-    port: 3000,
-    index: 'index.html',
-    docroot: './public_html'
-};
+var options = JSON.parse(fs.readFileSync('./options.json','utf-8'));
+ 
 
 var get_mime = function(filename) {
     var ext, type;
@@ -95,6 +91,21 @@ var respond = function(request, response, status, content, content_type) {
     return response.end();
 };
 
+var serve_file_404 = function(request, response, requestpath) {
+  var filepath = path.normalize(path.join(options.docroot, "404.html"));
+    return fs.readFile(filepath, function(error, content) {
+        if (error !== null) {
+            console.error("ERROR: Encountered error while processing " +
+                          request.method + " of \"" + request.url + 
+                          "\".", error);
+            return respond(request, response, 500);
+        } else {
+          return respond(request, response, 404, 
+                         content, get_mime(filepath));
+        }
+    });
+};
+
 var serve_file = function(request, response, requestpath) {
     return fs.readFile(requestpath, function(error, content) {
         if (error != null) {
@@ -117,6 +128,7 @@ var return_index = function(request, response, requestpath)  {
             return serve_file(request, response, requestpath);
         } else {
             return respond(request, response, 404);
+            // return serve_file_404(request, response, requestpath);
         }
     }
     
@@ -156,7 +168,7 @@ var request_handler = function(request, response) {
                     }
                 });
             } else {
-                return respond(request, response, 404);
+                return serve_file_404(request, response, 404);
             }
         });
     }
