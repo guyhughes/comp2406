@@ -4,7 +4,8 @@ block content
   h1= title
 
   div
-    p Fill out your info
+    p Fill out your info, please
+    img(src="/image.png")
     form(method="post", action="/add")
       div
         input#name(type="text", name="name")
@@ -21,4 +22,13 @@ block content
       div
         input#email(type="text", name="email")
         label Email
+      div
+        input#phone(type="text", name="phone")
+        label Phone
       button(type="submit") Submit
+
+    form(method="get", action="/list")
+      button(type="submit") List
+
+    form(method="get", action="/delete")
+      button(type="submit") Delete

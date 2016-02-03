@@ -12,6 +12,7 @@ block content
           th Country
           th Birthday
           th Email
+          th Phone
         tbody
           each item in items
             tr
@@ -20,6 +21,10 @@ block content
               td #{item.country}
               td #{item.birthday}
               td #{item.email}
+              td #{item.phone}
 
     form(method="get", action="/")
       button(type="submit") Home
+
+    form(method="get", action="/delete")
+      button(type="submit") Delete

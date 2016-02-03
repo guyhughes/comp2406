@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 Gimme something to delete, daddy
+
+  div
+    p I'm ready! Who you wanna delete?
+    img(src="/image.png")
+    form(method="post", action="/deleted")
+      div
+        input#name(type="text", name="name")
+        label Name
+      button(type="submit") Submit
